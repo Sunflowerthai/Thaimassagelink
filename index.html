@@ -1,77 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>ThaiMassageLink – Coming Soon</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>ThaiMassageLink – Under Construction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: #ffffff;
-}
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
-.container {
-  text-align: center;
-  padding: 40px;
-  max-width: 600px;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
+    body {
+      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.65)
+      ),
+      url('https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?auto=format&fit=crop&w=1600&q=80')
+      no-repeat center center / cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
 
-h2 {
-  font-size: 20px;
-  font-weight: 300;
-  margin-bottom: 30px;
-  color: #d1e8e2;
-}
+    .container {
+      animation: fadeIn 2s ease forwards;
+      padding: 20px;
+      max-width: 800px;
+    }
 
-.line {
-  width: 80px;
-  height: 2px;
-  background: #7fffd4;
-  margin: 30px auto;
-}
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
 
-p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #cfdfe6;
-}
+    h2 {
+      font-weight: 300;
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
 
-.footer {
-  margin-top: 40px;
-  font-size: 13px;
-  color: #9fb3bd;
-}
-</style>
+    .line {
+      width: 80px;
+      height: 2px;
+      background: #cfa76e;
+      margin: 0 auto 30px;
+      animation: grow 1.5s ease;
+    }
+
+    p {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes grow {
+      from { width: 0; }
+      to { width: 80px; }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
     <h1>ThaiMassageLink</h1>
-    <h2>Find Your ThaiMasseuse </h2>
-
     <div class="line"></div>
-
-    <p>
-      Our website is currently under construction.<br>
-      We are preparing something new.
-    </p>
-
-    <div class="footer">
-      © 2025 ThaiMassageLink · Coming Soon
-    </div>
+    <h2>Website under construction</h2>
+    <p>Coming soon</p>
   </div>
 </body>
 </html>

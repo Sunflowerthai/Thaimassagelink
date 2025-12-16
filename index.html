@@ -1,104 +1,274 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ThaiMassageLink – Under Construction</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ThaiMassageLink — Under Construction</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg1:#070A0F;
+      --bg2:#0E1320;
+      --gold:#D6B15E;
+      --text:#EDEFF6;
+      --muted:rgba(237,239,246,.72);
+      --card:rgba(10,14,24,.58);
+      --stroke:rgba(255,255,255,.12);
+      --shadow: 0 24px 80px rgba(0,0,0,.55);
     }
 
-    body {
-      height: 100vh;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(
-        rgba(0,0,0,0.65),
-        rgba(0,0,0,0.65)
-      ),
-      url('https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?auto=format&fit=crop&w=1600&q=80')
-      no-repeat center center / cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-align: center;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 15% 10%, rgba(214,177,94,.18), transparent 60%),
+                  radial-gradient(900px 700px at 85% 80%, rgba(97,202,170,.12), transparent 55%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow:hidden;
     }
 
-    .container {
-      animation: fadeIn 2s ease forwards;
-      padding: 20px;
-      max-width: 800px;
+    /* Optional background image (replace URL if you want) */
+    .bg-photo{
+      position:fixed; inset:0;
+      background-image:
+        linear-gradient(180deg, rgba(7,10,15,.70), rgba(7,10,15,.82)),
+        url("https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=2400&q=60");
+      background-size:cover;
+      background-position:center;
+      filter:saturate(1.05) contrast(1.05);
+      transform:scale(1.02);
+      z-index:-4;
     }
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
+    /* Animated aurora */
+    .aurora{
+      position:fixed; inset:-30%;
+      background:
+        radial-gradient(closest-side at 20% 20%, rgba(214,177,94,.22), transparent 70%),
+        radial-gradient(closest-side at 70% 30%, rgba(97,202,170,.18), transparent 72%),
+        radial-gradient(closest-side at 45% 80%, rgba(120,120,255,.10), transparent 75%);
+      filter: blur(40px);
+      animation: drift 18s ease-in-out infinite alternate;
+      z-index:-3;
+      opacity:.9;
+    }
+    @keyframes drift{
+      0%{transform:translate(-2%, -1%) scale(1.02) rotate(-2deg)}
+      100%{transform:translate(2%, 2%) scale(1.06) rotate(2deg)}
     }
 
-    h2 {
-      font-weight: 300;
-      font-size: 1.4rem;
-      margin-bottom: 30px;
-      opacity: 0.9;
+    /* Floating lotus pattern (pure CSS) */
+    .petals{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:-2;
+      opacity:.55;
+      mix-blend-mode:screen;
+    }
+    .petal{
+      position:absolute;
+      width:18px; height:18px;
+      border-radius: 60% 60% 60% 60%;
+      background: radial-gradient(circle at 30% 30%, rgba(214,177,94,.85), rgba(214,177,94,.10) 70%, transparent 72%);
+      filter: blur(.2px);
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp{
+      0%   { transform: translateY(12vh) translateX(0) rotate(0deg); opacity:0 }
+      10%  { opacity:.8 }
+      100% { transform: translateY(-120vh) translateX(10vw) rotate(240deg); opacity:0 }
     }
 
-    .line {
-      width: 80px;
-      height: 2px;
-      background: #cfa76e;
-      margin: 0 auto 30px;
-      animation: grow 1.5s ease;
+    /* Layout */
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding:24px;
     }
 
-    p {
-      font-size: 1rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.85;
+    .card{
+      width:min(860px, 96vw);
+      background: var(--card);
+      border:1px solid var(--stroke);
+      border-radius:24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow:hidden;
+      position:relative;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(120deg, rgba(214,177,94,.14), transparent 35%, rgba(97,202,170,.10));
+      opacity:.7;
+      pointer-events:none;
     }
 
-    @keyframes grow {
-      from { width: 0; }
-      to { width: 80px; }
+    .inner{
+      position:relative;
+      padding:38px 34px;
+      display:grid;
+      gap:18px;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.5rem;
-      }
-      h2 {
-        font-size: 1.1rem;
-      }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo{
+      width:46px; height:46px;
+      border-radius:16px;
+      border:1px solid rgba(214,177,94,.35);
+      background: radial-gradient(circle at 35% 35%, rgba(214,177,94,.35), rgba(214,177,94,.08) 60%, rgba(0,0,0,.0));
+      display:grid;
+      place-items:center;
+      box-shadow: 0 10px 26px rgba(0,0,0,.35);
+    }
+
+    .logo svg{opacity:.95}
+    h1{
+      margin:0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing:.2px;
+      line-height:1.05;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size: clamp(14px, 1.6vw, 18px);
+      line-height:1.5;
+      max-width: 62ch;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:6px;
+    }
+    .pill{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      border-radius:999px;
+      padding:9px 12px;
+      font-size:13px;
+      color:rgba(237,239,246,.82);
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:99px;background:var(--gold);
+      box-shadow:0 0 18px rgba(214,177,94,.65);
+      animation:pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(.85); opacity:.7}
+      50%{transform:scale(1.2); opacity:1}
+    }
+
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      margin: 10px 0;
+    }
+
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:center;
+      flex-wrap:wrap;
+      color:rgba(237,239,246,.62);
+      font-size:13px;
+    }
+
+    .hint{
+      color:rgba(237,239,246,.72);
+    }
+    .hint b{color:rgba(237,239,246,.92)}
+
+    /* Small screens */
+    @media (max-width:520px){
+      .inner{padding:28px 22px}
+      .logo{width:42px;height:42px}
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>ThaiMassageLink</h1>
-    <div class="line"></div>
-    <h2>Website under construction</h2>
-    <p>Coming soon</p>
-  </div>
+  <div class="bg-photo" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"></div>
+
+  <div class="petals" aria-hidden="true" id="petals"></div>
+
+  <main class="wrap">
+    <section class="card" role="region" aria-label="Under construction">
+      <div class="inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">
+            <!-- Minimal lotus icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M12 21c5-2.2 8-6.2 8-11 0-2.2-1-4.2-2.6-5.8-1.6 4-4.2 6.2-5.4 7.1-1.2-.9-3.8-3.1-5.4-7.1C5 4.8 4 6.8 4 10c0 4.8 3 8.8 8 11Z" stroke="rgba(214,177,94,.92)" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M12 12.8c-.7.6-2.3 1.7-4.4 2.2 1.2-1.8 2.1-3.7 2.6-5.6.7 1.6 1.4 2.7 1.8 3.4Z" fill="rgba(214,177,94,.24)"/>
+              <path d="M12 12.8c.7.6 2.3 1.7 4.4 2.2-1.2-1.8-2.1-3.7-2.6-5.6-.7 1.6-1.4 2.7-1.8 3.4Z" fill="rgba(214,177,94,.18)"/>
+            </svg>
+          </div>
+          <div>
+            <h1>ThaiMassageLink</h1>
+            <p class="subtitle">
+              We’re preparing something calm, premium, and simple.
+              The website is currently under construction.
+            </p>
+          </div>
+        </div>
+
+        <div class="pill-row">
+          <div class="pill"><span class="dot"></span>Under construction</div>
+          <div class="pill">Thai massage • Budapest</div>
+          <div class="pill">Coming soon</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="footer">
+          <div class="hint">Tip: open the page with <b>https://</b> once HTTPS turns on in GitHub Pages.</div>
+          <div>© <span id="year"></span> ThaiMassageLink</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Floating petals generator (gentle, "animated background")
+    const container = document.getElementById('petals');
+    const count = 22;
+
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      const left = Math.random() * 100;
+      const size = 10 + Math.random() * 18;
+      const duration = 14 + Math.random() * 18;
+      const delay = -Math.random() * duration;
+
+      p.style.left = left + 'vw';
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.animationDuration = duration + 's';
+      p.style.animationDelay = delay + 's';
+
+      container.appendChild(p);
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
